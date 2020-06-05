@@ -45,4 +45,4 @@ export DATABASE_URL=postgres://lgzrimzvwnwyrf:57a2abf547991b7b1e4b70bcb30d5c99d8
 local sql server instance
 
 'postgresql+psycopg2://postgres:/Nepal@123@localhost:5432/bookread'
-'postgresql://posetgres:/Nepal@123@localhost:5432/bookread'
+export DATABASE_URL=postgresql://postgres:/Nepal@123@localhost:5432/postgres
