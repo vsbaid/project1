@@ -1,0 +1,48 @@
+Notes on the Project and Related Information
+
+Webapp-name on Heroku
+
+br-vimal
+Please note that these credentials are not permanent.
+
+Heroku rotates credentials periodically and updates applications where this database is attached.
+
+Host
+    ec2-54-86-170-8.compute-1.amazonaws.com
+Database
+    d75ck9i0ovjsso
+User
+    lgzrimzvwnwyrf
+Port
+    5432
+Password
+    57a2abf547991b7b1e4b70bcb30d5c99d877bf5cc4c16f1d48b2c366e95c9284
+URI
+    postgres://lgzrimzvwnwyrf:57a2abf547991b7b1e4b70bcb30d5c99d877bf5cc4c16f1d48b2c366e95c9284@ec2-54-86-170-8.compute-1.amazonaws.com:5432/d75ck9i0ovjsso
+Heroku CLI
+    heroku pg:psql postgresql-amorphous-32184 --app br-vimal
+
+Heroku ENds Here
+*************************************************************************************************************************************************************************
+
+Goodreads begins -->
+
+    Api Key
+    Here is your developer key for using the Goodreads API. This key must be appended to every request using the form variable 'key'. (If you're using our write API, you'll need your secret too.)
+
+    key: kBqu25B5BBam4sUalojslg
+    secret: 0biEEY54eqBdm4B9rpZ0IXOhMch2gLZuHJyEmz4f5c
+
+    Good Reads API Documentation
+
+    https://www.goodreads.com/api/index
+
+export FLASK_APP=application.py
+export FLASK_DEBUG=1
+export DATABASE_URL=postgres://lgzrimzvwnwyrf:57a2abf547991b7b1e4b70bcb30d5c99d877bf5cc4c16f1d48b2c366e95c92
+84@ec2-54-86-170-8.compute-1.amazonaws.com:5432/d75ck9i0ovjsso
+
+local sql server instance
+
+'postgresql+psycopg2://postgres:/Nepal@123@localhost:5432/bookread'
+'postgresql://posetgres:/Nepal@123@localhost:5432/bookread'

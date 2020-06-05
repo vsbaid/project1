@@ -1,0 +1,21 @@
+1. User Design
+
+User First Name
+User Last Name
+User ID
+User Email
+User Profile Picture - Optional
+User Password
+
+2. Book Design
+
+Book Title
+Book Author
+Book Year
+Book ISBN
+Book Review Count
+Book Average Score
+Book ID GR
+Book ISBN13
+Book Ratings Count
+Book 

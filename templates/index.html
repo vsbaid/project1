@@ -1,0 +1,21 @@
+{% extends "layout.html" %}
+
+<!-- Title of the Webpage -->
+{% block title1 %}Welcome to Vimal's App{% endblock %}
+
+<!-- Body of the Webpage -->
+{% block body %}
+
+<div class="login container">
+    <form action="{{ url_for('login') }}" method="post">
+        <input type="text" name="uid" placeholder="Enter Your User ID">
+        <input type="password" name="password" placeholder="Enter Your Password">
+        <button type="submit" name="button">Sign In</button>
+    </form>
+</div>
+<hr>
+<div class="container">
+    <a class="container-fluid" href="{{ url_for('signup') }}">Sign Up</a>
+</div>
+
+{% endblock %}

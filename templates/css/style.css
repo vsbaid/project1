@@ -1,0 +1,40 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+#mainHeader {
+  background-color: black;
+  padding: 25px;
+}
+#mainHeader h1 {
+  padding-left: 50px;
+  padding-right: 50px;
+  text-align: center;
+  color: white;
+}
+
+.login {
+  width: 400px;
+  height: 550px;
+  background: black;
+  color: white;
+  top: 50%;
+  left: 50%;
+  position: absolute;
+  transform: translate(-50%, -50%);
+  box-sizing: border-box;
+}
+
+#signup-page {
+  width: 70%;
+  background-color: teal;
+  background: teal;
+}
+
+button {
+  width: 150px;
+  height: 130px;
+}
+
+/*# sourceMappingURL=style.css.map */

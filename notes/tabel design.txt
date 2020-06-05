@@ -1,0 +1,55 @@
+CREATE TABLE users (
+      id SERIAL PRIMARY KEY;
+      fname VARCHAR NOT NULL;
+      lname VARCHAR NOT NULL;
+      userID VARCHAR NOT NULL UNIQUE;
+      password VARCHAR NOT NULL;
+      email VARCHAR UNIQUE;
+)
+
+UPDATE TABLE - DONT USE THE WORD TABLE ;
+
+UPDATE app_user SET password ='abcdefgh' WHERE id=1;
+ALTER TABLE app_user DROP CONSTRAINT password;
+
+
+
+what are the funtions that should be available on this class.
+
+Log In
+Log Out
+Change Password
+Sign Up
+
+----------------------------------------------------------------------------------------------------------------------------------------
+Sign Up
+
+There should be on the login page a button to Sign Up
+Which should take the user to the Sign Up Page
+Here the user should enter their data
+First Name  -   First Name of the user.
+Last Name   -   Last Name of the User
+Email Id    -   Email Address of the user and should be UNIQUE so need to Check with the Database
+User ID     -   This ID needs to be unique, so at the time the user enter's this password,
+                query from the database if the users exists and if this User ID can be allocated
+password    -   While signing up password needs to be entered twice, and checked whether both these passwords are correct or not.
+                Also check the password for validation, minimum number of characters and maximum numbers as well. Minimum 6 maximum 50.
+                use VARCHAR constraint with MIN and MAX ALTER TABLE my_table
+                ALTER TABLE app_user ADD CONSTRAINT password CHECK (char_length(password) >=5 AND char_length(password) <=50);
+
+Once a User has signed up, they should then, log in again to make sure that their sign in information is correct.
+
+----------------------------------------------------------------------------------------------------------------------------------------
+Log In
+
+There should be on the login page a User Name Field Input and Password Field input
+If a user enters correct username and password, it needs to be checked against the database and if all ok, then the user session should be initiated,
+and the user should be able to work with the App.
+
+----------------------------------------------------------------------------------------------------------------------------------------
+Log out & Change Password
+
+Once a user in Inside the app, on the top right corner of the App Pages there should be a button which shows the user id that is logged in,
+and on hovering onto that user id there should be a button to log out and change password.
+
+----------------------------------------------------------------------------------------------------------------------------------------
