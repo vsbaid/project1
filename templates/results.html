@@ -1,0 +1,78 @@
+{% extends "layout.html" %}
+
+{% block pagetitle %}Search for Book|Login Page{% endblock %}
+
+{% block signOut %}
+<li><a class="float-right mx-2" href="{{ url_for('logoff')}}">Log Out</a></li>
+{% endblock %}
+
+{% block body %}
+<h3>Please find the below search results arrange by ISBN, Title and Author.</h3>
+<div class="">
+  <ul>
+    <li>
+      <h3>By ISBN</h3>
+      <!-- Order by ISBN -->
+      <table class="table table-dark text-center table-striped table-bordered">
+        <tr class="thead-light">
+          <th>ISBN</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Year</th>
+        </tr>
+        {% for id, isbn, title, author, year in isbn %}
+        <tr>
+          <td>{{isbn}}</td>
+          <td>{{title}}</td>
+          <td>{{author}}</td>
+          <td>{{year}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </li>
+
+    <li>
+      <h3>By Title</h3>
+      <!-- Order by Title -->
+      <table class="table table-dark text-center table-striped table-bordered">
+        <tr class="thead-light">
+          <th>ISBN</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Year</th>
+        </tr>
+        {% for id, isbn, title, author, year in titles %}
+        <tr>
+          <td>{{isbn}}</td>
+          <td>{{title}}</td>
+          <td>{{author}}</td>
+          <td>{{year}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </li>
+
+    <li>
+      <h3>By Author</h3>
+      <!-- Order by Author -->
+      <table class="table table-dark text-center table-striped table-bordered">
+        <tr class="thead-light">
+          <th>ISBN</th>
+          <th>Title</th>
+          <th>Author</th>
+          <th>Year</th>
+        </tr>
+        {% for id, isbn, title, author, year in authors %}
+        <tr>
+          <td>{{isbn}}</td>
+          <td>{{title}}</td>
+          <td>{{author}}</td>
+          <td>{{year}}</td>
+        </tr>
+        {% endfor %}
+      </table>
+    </li>
+
+</div>
+
+{% endblock %}

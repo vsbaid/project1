@@ -4,7 +4,6 @@ from flask import Flask, session, render_template, request
 from flask_session import Session
 from sqlalchemy import create_engine, inspect
 from sqlalchemy.orm import scoped_session, sessionmaker
-from appuser import AppUser
 
 app = Flask(__name__)
 
@@ -34,8 +33,8 @@ def createUserTable():
     db.commit()
 
 # Create a new user in the appuser table once they sign up
-def createUser(NewUser):
-    db.execute("INSERT INTO appuser (fname, lname, email, userID, password) VALUES (:fname, :lname, :email, :userID, :password)", {"fname":NewUser.fname, "lname":NewUser.lname, "userID":NewUser.uid, "email":NewUser.email, "password":NewUser.password})
+def createUser(fname, lname, email, uid, password):
+    db.execute("INSERT INTO appuser (fname, lname, email, userID, password) VALUES (:fname, :lname, :email, :userID, :password)", {"fname":fname, "lname":lname, "userID":uid, "email":email, "password":password})
     db.commit()
 
 # Check whether a user exists in the database
@@ -51,6 +50,13 @@ def pwdChk(userID,passW):
         return True
     else:
         return False
+
+def isBookInDB(searchStr):
+    searchTitle = db.execute("SELECT * FROM books WHERE title ILIKE" + '\'%' + searchStr + '%\'').fetchall()
+    searchAuthor = db.execute("SELECT * FROM books WHERE author ILIKE" + '\'%' + searchStr + '%\'').fetchall()
+    searchISBN = db.execute("SELECT * FROM books WHERE isbn ILIKE" + '\'%' + searchStr + '%\'').fetchall()
+    return searchTitle, searchAuthor, searchISBN
+
 #
 # End of Functions
 ################################################################################
@@ -70,10 +76,8 @@ def index():
 
         if password == password_chk:
             if isUserInDB(uid) == False:
-                NewUser = AppUser(fname, lname, email, uid, password)
-                print("Debug before createUser",NewUser)
                 try:
-                    createUser(NewUser)
+                    createUser(fname, lname, email, uid, password)
                 except:
                     return render_template("error.html",message="There was some error. Please check your enteries")
             else:
@@ -95,9 +99,20 @@ def login():
 
 @app.route("/signup",methods=["GET"])
 def signup():
-    fname_user = request.form.get("fname")
-    print(fname_user)
     return render_template("signup.html")
+
+@app.route("/logoff",methods=["GET"])
+def logoff():
+    return render_template("index.html")
+
+@app.route("/results",methods=["POST"])
+def results():
+    bookStr = request.form.get('searchStr')
+    findTitle, findAuthor, findISBN = isBookInDB(bookStr)
+    if not findTitle and not findAuthor and not findISBN:
+        return render_template("error.html",message="No Match Found, Change the search Query")
+    else:
+        return render_template("results.html",titles=findTitle,authors=findAuthor,isbn=findISBN)
 #
 # End of Routes
 #

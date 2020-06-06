@@ -1,9 +1,15 @@
 {% extends "layout.html" %}
 
-{% block title1 %}Error{% endblock %}
+{% block pagetitle %}Book Review|Error{% endblock %}
+
+{% block signOut %}
+<li><a class="float-right mx-2" href="{{ url_for('logoff')}}">Log Out</a></li>
+{% endblock %}
+
 {% block body %}
+<div class="m-5 px-5 bg-danger text-success">
+<h1 class="text-center text-white">Error Encountered</h1>
+</div>
 
-<h1>Error</h1>
-<h2>{{ message }}</h2>
-
+<h2 class="text-center text-orimary">{{ message }}</h2>
 {% endblock %}

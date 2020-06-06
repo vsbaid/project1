@@ -1,12 +1,12 @@
 {% extends "layout.html" %}
 
 <!-- Title of the Webpage -->
-{% block title1 %}Welcome to Vimal's App{% endblock %}
+{% block pagetitle %}Book Review App{% endblock %}
 
 <!-- Body of the Webpage -->
 {% block body %}
 
-<div class="login container">
+<div class="text-center">
     <form action="{{ url_for('login') }}" method="post">
         <input type="text" name="uid" placeholder="Enter Your User ID">
         <input type="password" name="password" placeholder="Enter Your Password">
@@ -14,8 +14,8 @@
     </form>
 </div>
 <hr>
-<div class="container">
+<!-- <div class="container">
     <a class="container-fluid" href="{{ url_for('signup') }}">Sign Up</a>
-</div>
+</div> -->
 
 {% endblock %}
