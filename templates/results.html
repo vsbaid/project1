@@ -2,16 +2,23 @@
 
 {% block pagetitle %}Search for Book|Login Page{% endblock %}
 
+{% block search %}
+<li><a class="float-left mx-2" href="{{ url_for('search')}}">Search</a></li>
+{% endblock %}
+
 {% block signOut %}
 <li><a class="float-right mx-2" href="{{ url_for('logoff')}}">Log Out</a></li>
 {% endblock %}
 
 {% block body %}
-<h3>Please find the below search results arrange by ISBN, Title and Author.</h3>
+<h3 class="text-center">Please find the below search results arrange by ISBN, Title and Author.</h3>
+<h4 class="py-3 align-center alert-primary container-fluid text-center">Click on the Book Title to go to individual Book Page</h4>
 <div class="">
+
   <ul>
+    {% if isbn %}
     <li>
-      <h3>By ISBN</h3>
+      <h3>Search by ISBN-<span class="text-primary"><strong>{{ isbn|length}} titles found</strong></span></h3>
       <!-- Order by ISBN -->
       <table class="table table-dark text-center table-striped table-bordered">
         <tr class="thead-light">
@@ -23,16 +30,21 @@
         {% for id, isbn, title, author, year in isbn %}
         <tr>
           <td>{{isbn}}</td>
-          <td>{{title}}</td>
+          <td><a href="{{url_for('book',book_id=id)}}">{{title}}</a></td>
           <td>{{author}}</td>
           <td>{{year}}</td>
         </tr>
         {% endfor %}
       </table>
     </li>
+    {% else %}
+    <li class="bg-warning">No Results Matching Query in ISBN</li>
+    {% endif %}
+    <hr>
 
+    {% if titles %}
     <li>
-      <h3>By Title</h3>
+      <h3>Search by Title-<span class="text-primary"><strong>{{ titles|length}} titles found</strong></span></h3>
       <!-- Order by Title -->
       <table class="table table-dark text-center table-striped table-bordered">
         <tr class="thead-light">
@@ -44,16 +56,21 @@
         {% for id, isbn, title, author, year in titles %}
         <tr>
           <td>{{isbn}}</td>
-          <td>{{title}}</td>
+          <td><a href="{{url_for('book',book_id=id)}}">{{title}}</a></td>
           <td>{{author}}</td>
           <td>{{year}}</td>
         </tr>
         {% endfor %}
       </table>
     </li>
+    {% else %}
+    <li class="bg-warning">No Results Matching Query in Titles</li>
+    {% endif %}
+    <hr>
 
+    {% if authors %}
     <li>
-      <h3>By Author</h3>
+      <h3>Search by Author-<span class="text-primary"><strong>{{ authors|length}} titles found</strong></span></h3>
       <!-- Order by Author -->
       <table class="table table-dark text-center table-striped table-bordered">
         <tr class="thead-light">
@@ -65,13 +82,17 @@
         {% for id, isbn, title, author, year in authors %}
         <tr>
           <td>{{isbn}}</td>
-          <td>{{title}}</td>
+          <td><a href="{{url_for('book',book_id=id)}}">{{title}}</a></td>
           <td>{{author}}</td>
           <td>{{year}}</td>
         </tr>
         {% endfor %}
       </table>
     </li>
+    {% else %}
+    <li class="bg-warning">No Results Matching Query in Authors</li>
+    {% endif %}
+    <hr>
 
 </div>
 

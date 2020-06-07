@@ -44,6 +44,18 @@ def isUserInDB(userID):
     else:
         return True
 
+# Check a user session is authenticated
+def isAuth():
+    try:
+        # print(session["auth"],"1")
+        if session["auth"] == True:
+            return True
+        else:
+            return False
+    except:
+        return False
+
+
 # Check if a given username and password exists in the database
 def pwdChk(userID,passW):
     if db.execute("SELECT * FROM appuser WHERE userid = :id AND password = :password", {"id":userID, "password":passW}).rowcount == 1:
@@ -56,6 +68,10 @@ def isBookInDB(searchStr):
     searchAuthor = db.execute("SELECT * FROM books WHERE author ILIKE" + '\'%' + searchStr + '%\'').fetchall()
     searchISBN = db.execute("SELECT * FROM books WHERE isbn ILIKE" + '\'%' + searchStr + '%\'').fetchall()
     return searchTitle, searchAuthor, searchISBN
+
+def createBookReviewTable():
+    db.execute("CREATE TABLE IF NOT EXISTS bookreview (id SERIAL PRIMARY KEY, userID INTEGER REFERENCES appuser, bookID INTEGER REFERENCES books, review VARCHAR NOT NULL)")
+    db.commit()
 
 #
 # End of Functions
@@ -89,9 +105,17 @@ def index():
 
 @app.route("/login",methods=["POST"])
 def login():
+    session["auth"]=False
     uid = request.form.get('uid')
     password = request.form.get('password')
+    if session.get("user") is None:
+        session["user"]=uid
+    if session.get("pwd") is None:
+        session["pwd"]=password
+    print(session["user"],session["pwd"])
     if pwdChk(uid,password):
+        session["auth"]=True;
+        print(session["auth"],"1")
         return render_template("login.html")
     else:
         return render_template("error.html",message="Wrong Credentials. Pls Try Again")
@@ -103,16 +127,54 @@ def signup():
 
 @app.route("/logoff",methods=["GET"])
 def logoff():
+    # print(session["user"],session["pwd"])
+    # session[""]
+    session.clear()
     return render_template("index.html")
+
+@app.route("/search",methods=["GET"])
+def search():
+    try:
+        if isAuth():
+            return render_template("search.html")
+        else:
+            return render_template("error.html",message="Wrong Credentials. Pls Try Again")
+    except:
+        return render_template("error.html",message="Exception in Application Caught 1")
+
 
 @app.route("/results",methods=["POST"])
 def results():
-    bookStr = request.form.get('searchStr')
-    findTitle, findAuthor, findISBN = isBookInDB(bookStr)
-    if not findTitle and not findAuthor and not findISBN:
-        return render_template("error.html",message="No Match Found, Change the search Query")
-    else:
-        return render_template("results.html",titles=findTitle,authors=findAuthor,isbn=findISBN)
+    try:
+        if isAuth():
+            # return render_template("login.html")
+            bookStr = request.form.get('searchStr')
+            print(bookStr)
+            findTitle, findAuthor, findISBN = isBookInDB(bookStr)
+            if not findTitle and not findAuthor and not findISBN:
+                return render_template("error.html",message="No Match Found, Change the search Query.")
+            else:
+                print("reached here ---- > 1")
+                print(findTitle,findAuthor,findISBN)
+                return render_template("results.html",titles=findTitle,authors=findAuthor,isbn=findISBN)
+        else:
+            return render_template("error.html",message="Session Ended. Pls Try Again")
+    except:
+        return render_template("error.html",message="Exception in Application Caught Error Code 2")
+
+@app.route("/book/<int:book_id>",methods=["GET","POST"])
+def book(book_id):
+    try:
+        if isAuth():
+            book = db.execute("SELECT * FROM books WHERE id = :id", {"id": book_id}).fetchone()
+            if book is None:
+                return render_template("error.html", message="No such book.")
+            else:
+                return render_template("book.html", book=book)
+        else:
+            return render_template("error.html",message="Session Ended. Pls Try Again")
+    except:
+        return render_template("error.html",message="Exception in Application Caught Error Code 3")
 #
 # End of Routes
 #
@@ -121,3 +183,4 @@ def results():
 # Logical Block to Operate the code
 
 createUserTable()
+createBookReviewTable()

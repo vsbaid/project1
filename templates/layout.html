@@ -19,6 +19,8 @@
         <ul class="list-inline">
           <li><a class="float-left mx-2" href="{{ url_for('index')}}">Home</a></li>
           <li><a class="float-left mx-2" href="{{ url_for('signup')}}">Sign Up</a></li>
+          <!-- <li><a class="float-left mx-2" href="{{ url_for('search')}}">Search</a></li> -->
+          {% block search %}{% endblock %}
           <!-- <li><a class="float-right mx-2" href="{{ url_for('logoff')}}">Log Out</a></li> -->
           {% block signOut %}{% endblock %}
         </ul>

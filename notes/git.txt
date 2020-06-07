@@ -1,0 +1,20 @@
+In the command line from your project folder run
+$ git init
+this initializes git in your folder
+$ git remote add origin https://github.com/me50/username.git
+Sets a new remote
+to see your new remote run
+$ git remote -v
+then
+$ git fetch
+to fetch with remote
+then you need to create new branch
+$ git checkout -b
+in this case it's
+$ git checkout -b web50/projects/2020/x/0
+$ git status
+shows you current status of your files
+then you may go on to
+$ git add .
+$ git commit -m "message"
+$ git push origin web50/projects/2020/x/0

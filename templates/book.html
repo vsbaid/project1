@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 
-{% block pagetitle %}Book Review|Error{% endblock %}
+{% block pagetitle %}Search for Book|Login Page{% endblock %}
 
 {% block search %}
 <li><a class="float-left mx-2" href="{{ url_for('search')}}">Search</a></li>
@@ -11,9 +11,15 @@
 {% endblock %}
 
 {% block body %}
-<div class="m-5 px-5 bg-danger text-success">
-<h1 class="text-center text-white">Error Encountered</h1>
+<h3>Please find the below information related to your search.</h3>
+
+<div class="">
+
+{{ book.isbn }}
+{{ book.title }}
+{{ book.author}}
+{{ book.year }}
+
 </div>
 
-<h2 class="text-center text-orimary">{{ message }}</h2>
 {% endblock %}
