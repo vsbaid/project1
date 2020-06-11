@@ -191,7 +191,7 @@ def results():
             else:
                 return render_template("results.html",titles=findTitle,authors=findAuthor,isbn=findISBN)
         else:
-            return render_template("error.html",message="Session Ended. Pls Try Again")
+            return render_template("error.html",message="Session Ended. Pls go to Home Page and Log In Again")
     except:
         return render_template("error.html",message="Exception in Application Caught Error Code 2")
 
@@ -235,7 +235,7 @@ def book_api(isbn):
     searchISBN = isBookISBNInDB(isbn);
     # Make sure book exists.
     if searchISBN is None:
-        return jsonify({"error": "Invalid book ISBN"}), 422
+        return jsonify({"error": "Invalid book ISBN"}), 404
 
     #bookRating, bookRatingCount =
     avgRating = db.execute("SELECT AVG(rating)from bookreview WHERE bookID=:bookID",{'bookID':searchISBN.id}).fetchall()

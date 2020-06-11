@@ -12,10 +12,12 @@
 
 {% block body %}
 
-<h3>Welcome to the WebApp. Pls search for the book that you want.</h3>
-<div class="">
+<h3 class="text-center">Welcome to the WebApp. Pls search for the book that you want.</h3>
+<br>
+<div class="text-center container">
   <form action="{{ url_for('results') }}" method="post">
-    <input type="text" name="searchStr" placeholder="Enter the ISBN Number, Title, or Author of the book you want to search for">
+    <p>Enter the ISBN Number, Title, or Author of the book you want to search for</p>
+    <input type="text" name="searchStr" placeholder="Enter your query.">
     <button type="submit" name="Search">Submit</button>
   </form>
 </div>

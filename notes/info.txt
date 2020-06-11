@@ -39,8 +39,7 @@ Goodreads begins -->
 
 export FLASK_APP=application.py
 export FLASK_DEBUG=1
-export DATABASE_URL=postgres://lgzrimzvwnwyrf:57a2abf547991b7b1e4b70bcb30d5c99d877bf5cc4c16f1d48b2c366e95c92
-84@ec2-54-86-170-8.compute-1.amazonaws.com:5432/d75ck9i0ovjsso
+export DATABASE_URL=postgres://rngcggwlwnjtjm:b9e028a7f9f305db3b8c89bd6b42cb19ac4ac5ac8bf86d82469fc027a2de0fc0@ec2-18-214-211-47.compute-1.amazonaws.com:5432/dclueq3djl4nct
 
 local sql server instance
 
