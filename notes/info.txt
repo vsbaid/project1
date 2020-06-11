@@ -46,3 +46,5 @@ local sql server instance
 
 'postgresql+psycopg2://postgres:/Nepal@123@localhost:5432/bookread'
 export DATABASE_URL=postgresql://postgres:/Nepal@123@localhost:5432/postgres
+
+you want to do {"data": "%"+data+"%"} to add the wildcards to the data

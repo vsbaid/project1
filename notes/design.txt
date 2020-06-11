@@ -18,4 +18,16 @@ Book Average Score
 Book ID GR
 Book ISBN13
 Book Ratings Count
-Book 
+Book
+
+3. Book Review Design
+
+
+Logic for the Book Selection Page after Search Results and Taking review from the User also in this page.
+
+
+1. Get the Book ID
+2. Search the Book Table with the Book ID
+3. If Book ID is found then collect all reviews from Reviews TABLE
+4. If User Review is found in the table for the particular book, display all reviews with relevant data.
+5. Else If User Review is not found in the table display a form where user can input the data.

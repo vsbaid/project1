@@ -1,5 +1,8 @@
 {% extends "layout.html" %}
 
+
+{% block signUp %}<li><a class="float-left mx-2" href="{{ url_for('signup')}}">Sign Up</a></li> {% endblock %}
+
 <!-- Title of the Webpage -->
 {% block pagetitle %}Book Review App{% endblock %}
 
@@ -14,8 +17,5 @@
     </form>
 </div>
 <hr>
-<!-- <div class="container">
-    <a class="container-fluid" href="{{ url_for('signup') }}">Sign Up</a>
-</div> -->
 
 {% endblock %}

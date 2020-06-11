@@ -1,0 +1,22 @@
+<!-- {% if bookreview %} -->
+<!-- Show Review -->
+<!-- {{bookreview}} Available -->
+<!-- {% else %} -->
+<!-- Form to give review -->
+<!-- <h1>No Review Available</h1> -->
+<!-- {% endif %} -->
+
+<!-- <div class="text-center"> -->
+<!-- <form action="{{ url_for('book') }}" method="post"> -->
+        <!-- <input type="text" name="uid" placeholder="Enter Your User ID"> -->
+        <!-- <input type="password" name="password" placeholder="Enter Your Password"> -->
+        <!-- <button type="submit" name="button">Sign In</button> -->
+    <!-- </form> -->
+<!-- </div> -->
+<!-- <hr> --> -->
+
+<!-- <div class="container">
+  <!-- <form class="" action="#" method="post"> -->
+
+  <!-- </form> -->
+<!-- </div> --> -->

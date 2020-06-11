@@ -1,0 +1,10 @@
+{'books':
+  [{'id': 19707,
+    'isbn': '0399148701',
+    'isbn13': '9780399148705',
+    'ratings_count': 23469,
+    'reviews_count': 37272,
+    'text_reviews_count': 533,
+    'work_ratings_count': 26063,
+    'work_reviews_count': 43277,
+     'work_text_reviews_count': 687, 'average_rating': '3.68'}]}
